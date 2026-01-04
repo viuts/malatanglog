@@ -1,0 +1,169 @@
+syntax = "proto3";
+package malatanglog.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/viuts/malatanglog/api/proto/v1;malatanglogv1";
+
+service FlavorService {
+  // Get shops (searchable by query)
+  rpc GetShops(GetShopsRequest) returns (GetShopsResponse) {
+    option (google.api.http) = {
+      get: "/v1/shops"
+    };
+  }
+
+  // Create a new Review
+  rpc CreateReview(CreateReviewRequest) returns (Review) {
+    option (google.api.http) = {
+      post: "/v1/reviews"
+      body: "*"
+    };
+  }
+
+  // Update an existing Review
+  rpc UpdateReview(UpdateReviewRequest) returns (Review) {
+    option (google.api.http) = {
+      put: "/v1/reviews/{id}"
+      body: "*"
+    };
+  }
+
+  // Delete a Review
+  rpc DeleteReview(DeleteReviewRequest) returns (Review) {
+    option (google.api.http) = {
+      delete: "/v1/reviews/{id}"
+    };
+  }
+
+  // List user's Reviews
+  rpc ListReviews(ListReviewsRequest) returns (ListReviewsResponse) {
+    option (google.api.http) = {
+      get: "/v1/reviews"
+    };
+  }
+}
+
+message LatLng {
+  double lat = 1;
+  double lng = 2;
+}
+
+message Shop {
+  string id = 1;
+  string name = 2;
+  double lat = 3;
+  double lng = 4;
+  string category = 5;
+  bool is_chain = 7;
+  string address = 8;
+  repeated string image_urls = 11;
+  string source_url = 13;
+}
+
+message GetShopsRequest {
+  string query = 1;
+  LatLng user_location = 2;
+  double radius_meters = 3;
+}
+
+message GetShopsResponse {
+  repeated Shop shops = 1;
+}
+
+message CreateReviewRequest {
+  string shop_name = 1;
+  string soup_type = 2; // Default is "麻辣" in UI
+  double spiciness_level = 3; // 0.5 increments
+  
+  enum OrderStyle {
+    ORDER_STYLE_UNSPECIFIED = 0;
+    ORDER_STYLE_BUFFET = 1;
+    ORDER_STYLE_ORDER = 2;
+  }
+  OrderStyle order_style = 4;
+
+  int32 taste_tonkotsu_gyukotsu = 5;
+  int32 taste_yakuzen = 6;
+  int32 taste_sesame = 7;
+  int32 taste_shibire = 8;
+  int32 taste_spiciness = 9;
+  int32 taste_fat = 10;
+  
+  repeated string ingredients = 11;
+  string best_ingredient = 12;
+  string photo_url = 13;
+  string comment = 14;
+  double overall_rating = 15; // 1-10
+  string visited_at = 16;
+}
+
+message ListReviewsRequest {
+  // Pagination could be added here
+}
+
+message ListReviewsResponse {
+  repeated Review reviews = 1;
+}
+
+message UpdateReviewRequest {
+  string id = 1;
+  string shop_name = 2;
+  string soup_type = 3;
+  double spiciness_level = 4;
+  
+  enum OrderStyle {
+    ORDER_STYLE_UNSPECIFIED = 0;
+    ORDER_STYLE_BUFFET = 1;
+    ORDER_STYLE_ORDER = 2;
+  }
+  OrderStyle order_style = 5;
+
+  int32 taste_tonkotsu_gyukotsu = 6;
+  int32 taste_yakuzen = 7;
+  int32 taste_sesame = 8;
+  int32 taste_shibire = 9;
+  int32 taste_spiciness = 10;
+  int32 taste_fat = 11;
+  
+  repeated string ingredients = 12;
+  string best_ingredient = 13;
+  string photo_url = 14;
+  string comment = 15;
+  double overall_rating = 16;
+  string visited_at = 17;
+}
+
+message DeleteReviewRequest {
+  string id = 1;
+}
+
+message Review {
+  string id = 1;
+  string shop_name = 2;
+  string soup_type = 3;
+  double spiciness_level = 4;
+  
+  enum OrderStyle {
+    ORDER_STYLE_UNSPECIFIED = 0;
+    ORDER_STYLE_BUFFET = 1;
+    ORDER_STYLE_ORDER = 2;
+  }
+  OrderStyle order_style = 5;
+
+  int32 taste_tonkotsu_gyukotsu = 6;
+  int32 taste_yakuzen = 7;
+  int32 taste_sesame = 8;
+  int32 taste_shibire = 9;
+  int32 taste_spiciness = 10;
+  int32 taste_fat = 11;
+
+  repeated string ingredients = 12;
+  string best_ingredient = 13;
+  string photo_url = 14;
+  string comment = 15;
+  double overall_rating = 16;
+  
+  string created_at = 17;
+  string visited_at = 18;
+}

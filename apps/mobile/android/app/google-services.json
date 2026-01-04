@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158289361374",
+    "project_id": "dev-malatanglog",
+    "storage_bucket": "dev-malatanglog.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158289361374:android:4dff601f785cd76502854f",
+        "android_client_info": {
+          "package_name": "com.viuts.malatanglog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158289361374-vrj99hbhurncv7qri7pk02a7mfogku0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9XqnsywRZfT7wZGD__0tsl_V9w9tR5i4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158289361374-vrj99hbhurncv7qri7pk02a7mfogku0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
